@@ -1,4 +1,4 @@
-package org.example;
+package org.engine.GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 
 public class GUI implements ActionListener {
     private final JLabel label = new JLabel("Engine status: off.");
-    private final JFrame frame = new JFrame();
     private final JButton ignitionSwitch = new JButton("Start");
     private final JButton stepForward = new JButton(">>");
     private final JButton stepBackward = new JButton("<<");
@@ -16,26 +15,21 @@ public class GUI implements ActionListener {
 
     public GUI() {
         ignitionSwitch.addActionListener(this);
-        stepForward.addActionListener(this);
         stepForward.setEnabled(false);
-        stepBackward.addActionListener(this);
         stepBackward.setEnabled(false);
 
-        JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-        panel.setLayout(new GridLayout(0, 1));
+        GUIPanel panel = new GUIPanel();
         panel.add(ignitionSwitch);
         panel.add(stepForward);
         panel.add(stepBackward);
         panel.add(label);
 
+        GUIFrame frame = new GUIFrame();
         frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Engine");
         frame.pack();
-        frame.setVisible(true);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         engineStartStop();
     }
