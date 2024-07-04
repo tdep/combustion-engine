@@ -11,7 +11,7 @@ public class EngineBlock {
 
     public void isOn() {
         if (engine.engineOn) {
-            System.out.println("Engine is on!!!!!");
+            timingBelt.runStepper();
         }
     }
 
