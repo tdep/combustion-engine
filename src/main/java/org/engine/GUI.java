@@ -12,13 +12,19 @@ public class GUI implements ActionListener {
 
     public GUI() {
         JButton ignitionSwitch = new JButton("Ignition");
+        ignitionSwitch.setActionCommand("start/stop");
         ignitionSwitch.addActionListener(this);
+
+        JButton test = new JButton("Test");
+        test.setActionCommand("test");
+        test.addActionListener(this);
 
         JPanel panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));
         panel.setLayout(new GridLayout(2,1));
         panel.add(ignitionSwitch);
         panel.add(engineStatusLabel);
+        panel.add(test);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,7 +35,11 @@ public class GUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        engine.startEngine();
-        engineStatusLabel.setText(engine.engineStatus);
+        if (e.getActionCommand().equals("start/stop")) {
+            engine.startEngine();
+            engineStatusLabel.setText(engine.engineStatus);
+        } else {
+            engine.engineBlock.isOn();
+        }
     }
 }

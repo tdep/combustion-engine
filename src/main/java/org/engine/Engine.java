@@ -1,6 +1,8 @@
 package org.engine;
 
 public class Engine {
+    public TimingBelt timingBelt = new TimingBelt();
+    public EngineBlock engineBlock = new EngineBlock(this, timingBelt);
     public boolean engineOn = false;
     public String engineStatus = "Engine Status: OFF";
 
