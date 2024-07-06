@@ -14,6 +14,9 @@ public class TimingBelt {
         stepper = new Stepper();
         while (engine.engineOn) {
             stepper.runStepper();
+            if (!engine.engineOn) {
+                break;
+            }
         }
     }
 }
